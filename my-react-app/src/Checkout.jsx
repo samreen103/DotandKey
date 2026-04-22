@@ -21,7 +21,7 @@ function Checkout()
             <h2>Order Summary </h2>
             {cartItems.map((item)=>(
                 <div className="check-details"key={item._id}>
-                     <img src={`http://localhost:3001/images/${item.file}`} />
+                     <img src={item.file} />
                      <div className="quantity">
                     <p>{item.name}</p>
                     <p>₹ {item.price}</p>

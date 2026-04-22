@@ -15,7 +15,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('https://dot-key-clone.onrender.com/login', { email, password })
+    axios.post('https://dotandkey.onrender.com/login', { email, password })
       .then((result) => {
         console.log(result)
         navigate("/Signup");

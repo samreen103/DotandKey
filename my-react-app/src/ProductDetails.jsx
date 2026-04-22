@@ -15,7 +15,7 @@ function ProductDetails()
     const navigate=useNavigate()
 
    useEffect(()=>{
-      axios.get(`http://localhost:3001/getProducts/${id}`)
+      axios.get(`https://dotandkey.onrender.com/getProducts/${id}`)
       .then(product=>setProduct(product.data))
       .catch(err=>console.log(err))
     },[id]);
@@ -47,7 +47,7 @@ function ProductDetails()
 
     return(
         <div className="details">
-            <img src={`http://localhost:3001/images/${product.file}`}/>
+            <img src={product.file}/>
             <div className="product-details">
             <h4>{product.name}</h4>
             <p>₹{product.price}</p>

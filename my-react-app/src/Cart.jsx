@@ -76,7 +76,7 @@ function Cart() {
               {cartItems.map((item, index) => (
                 <tr key={index}>
                   <td>
-                    <img src={`http://localhost:3001/images/${item.file}`} width="70"  />
+                    <img src={item.file} width="70"  />
                   </td>
                   <td>{item.name}</td>
                   <td>₹{item.price}</td>

@@ -17,7 +17,7 @@ function EditProduct()
     const [select,setSelect]=useState("");
 
      useEffect(()=>{
-        axios.get('http://localhost:3001/getProducts/'+id)
+        axios.get('https://dotandkey.onrender.com/getProducts/'+id)
         .then(product=>{console.log(product)
             setName(product.data.name)
             setPrice(product.data.price)
@@ -38,7 +38,7 @@ function EditProduct()
         formData.append('description', description)
         formData.append('category', category)
 
-        axios.put(`http://localhost:3001/EditProduct/${id}`,formData)
+        axios.put(`https://dotandkey.onrender.com/EditProduct/${id}`,formData)
         .then(result=>{
             console.log(result)
             navigate('/ManageProducts')

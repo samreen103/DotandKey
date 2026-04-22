@@ -18,6 +18,7 @@ import Cart from "./Cart";
 import Address from "./Address";
 import Checkout from "./Checkout";
 import ManageOrders from "./ManageOrders"
+import MyOrders from "./MyOrders"
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { BrowserRouter, Routes, Route, Link, Outlet,useLocation } from 'react-router-dom';
 import Payments from "./Payments";
@@ -54,6 +55,8 @@ function Layout() {
         <Route path="/Checkout" element={<Checkout/>}/>
         <Route path="/Address" element={<Address/>}/>
         <Route path="/Payments" element={<Payments/>}/>
+        <Route path="/MyOrders" element={<MyOrders/>}/>
+
 
 
       </Routes>

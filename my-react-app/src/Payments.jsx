@@ -47,7 +47,7 @@ const placeOrder =async () => {
   let address = JSON.parse(localStorage.getItem("address")) || {}; 
 
   if(payment==="COD"){
-    await axios.post("http://localhost:3001/place",{
+    await axios.post("https://dotandkey.onrender.com/place",{
       items:cart,
       address:address,
       payment:"COD",
@@ -68,7 +68,7 @@ const placeOrder =async () => {
   }
 
   try{
-    const res=await axios.post("http://localhost:3001/orders",{
+    const res=await axios.post("https://dotandkey.onrender.com/orders",{
       amount:total,
     });
     const data=res.data;
@@ -82,12 +82,13 @@ const placeOrder =async () => {
       description:"Order payment",
 
       handler:async function(response){
-        await axios.post("http://localhost:3001/place", {
+        await axios.post("https://dotandkey.onrender.com/place", {
          items: cart,
          address: address,
          payment: "Razorpay",
          total: total,
-         paymentId:response.razorpay_payment_id
+         paymentId:response.razorpay_payment_id,
+         userId:user._id
         
       });
       alert("Payment succesful")

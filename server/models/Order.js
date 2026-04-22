@@ -36,6 +36,10 @@ const OrderSchema=new mongoose.Schema({
     paymentId:
     {
         type:String
+    },
+    userId:
+    {
+        type:String
     }
      
 });

@@ -8,7 +8,7 @@ function ManageOrders()
     const status=["Pending","Shipped","Delivered"];
 
     useEffect(()=>{
-     axios.get("http://localhost:3001/getOrders")
+     axios.get("https://dotandkey.onrender.com/getOrders")
      .then((res)=>{
         setOrders(res.data)
      })
@@ -19,9 +19,9 @@ function ManageOrders()
 
     async function orderStatus(id,e){
         let status=e.target.value;
-        await axios.put("http://localhost:3001/updateStatus/"+id,{status:status});
+        await axios.put("https://dotandkey.onrender.com/updateStatus/"+id,{status:status});
 
-    const res = await axios.get("http://localhost:3001/getOrders");
+    const res = await axios.get("https://dotandkey.onrender.com/getOrders");
     setOrders(res.data);
     }
    
@@ -51,7 +51,7 @@ function ManageOrders()
                                     {order.items.map((item,index)=>(
                                         <div key={index}>
                                             {item.name}<br></br>
-                                            <img src={`http://localhost:3001/images/${item.file}`} width="60" height="60" />
+                                            <img src={item.file} width="60" height="60" />
 
                                         </div>
                                     ))}

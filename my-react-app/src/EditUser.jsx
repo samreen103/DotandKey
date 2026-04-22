@@ -10,7 +10,7 @@ function EditUser()
     const navigate=useNavigate()
 
     useEffect(()=>{
-        axios.get('http://localhost:3001/getUsers/'+id)
+        axios.get('https://dotandkey.onrender.com/getUsers/'+id)
         .then(result=>{console.log(result)
             setEmail(result.data.email)
             setPassword(result.data.password)
@@ -20,7 +20,7 @@ function EditUser()
 
     const Edit=(e)=>{
         e.preventDefault();
-        axios.put("http://localhost:3001/EditUser/"+id,{email,password})
+        axios.put("https://dotandkey.onrender.com/EditUser/"+id,{email,password})
         .then(result=>{
             console.log(result)
             navigate('/ManageUsers')

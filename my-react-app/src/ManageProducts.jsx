@@ -7,14 +7,14 @@ function ManageProducts()
 { 
     const [products, setProducts]=useState([])
     useEffect(()=>{
-        axios.get('http://localhost:3001/getProducts')
+        axios.get('https://dotandkey.onrender.com/getProducts')
         .then(product=> setProducts(product.data))
         .catch(err=>console.log(err))
     } ,[])
 
 
     const handleDelete=(id)=>{
-        axios.delete('http://localhost:3001/DeleteProduct/'+id)
+        axios.delete('https://dotandkey.onrender.com/DeleteProduct/'+id)
         .then(res=>{console.log(res)
             window.location.reload()
         }

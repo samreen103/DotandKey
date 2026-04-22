@@ -13,7 +13,7 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:3001/Signup', { email, password })
+    axios.post('https://dotandkey.onrender.com/Signup', { email, password })
       .then((result) => {
         console.log(result)
         if(result.data === "Success")

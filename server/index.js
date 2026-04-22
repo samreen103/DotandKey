@@ -197,8 +197,9 @@ app.post('/orders',async(req,res)=>{
 
 app.post("/place", async (req, res) => {
   try {
-    const { items, address, payment, total, status ,paymentId} = req.body;
+    const { items, address, payment, total, status ,paymentId,userId} = req.body;
     const newOrder = new OrdersModel({
+      userId:userId,  
       items: items,
       address: address,
       payment: payment,
@@ -254,6 +255,15 @@ app.put('/updateStatus/:id', async (req, res) => {
     console.log(err);
     res.status(500).json("Error updating status");
   }
+});
+
+app.get('/myOrders/:userId',async(req,res)=>{
+    try{
+        const orders=await OrdersModel.find({userId:req.params.userId});
+        res.json(orders);
+    }catch(err){
+        res.status(500).json(err);
+    }
 });
 
 const PORT=process.env.PORT ||3001;

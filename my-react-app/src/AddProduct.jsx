@@ -23,7 +23,7 @@ function AddProduct() {
         formData.append('description', description)
         formData.append('category', category)
 
-        axios.post('http://localhost:3001/AddProduct', formData)
+        axios.post('https://dotandkey.onrender.com/AddProduct', formData)
             .then((res) =>{ 
                 console.log(res)
                 navigate('/ManageProducts')

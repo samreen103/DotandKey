@@ -23,7 +23,7 @@ function Home() {
     
     const [products, setProducts]=useState([])
     useEffect(()=>{
-      axios.get('http://localhost:3001/getProducts')
+      axios.get('https://dotandkey.onrender.com/getProducts')
       .then(product=>setProducts(product.data))
       .catch(err=>console.log(err))
     },[])
