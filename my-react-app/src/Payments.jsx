@@ -8,8 +8,9 @@ function Payments()
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [payment,setPayment]=useState()
-  
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  
   useEffect(()=>{
     let data=JSON.parse(localStorage.getItem("cart"));
     if(!data){
@@ -38,6 +39,13 @@ const loadRazorpay=()=>{
 }
 
 const placeOrder =async () => {
+
+   if (!user) {
+      alert("Please login first");
+      navigate("/login");
+      return;
+    }
+
   if(payment===""){
     alert("Select a payment method")
     return
@@ -52,7 +60,8 @@ const placeOrder =async () => {
       address:address,
       payment:"COD",
       total:total,
-      status:"Pending"
+      status:"Pending",
+      userId:user._id
     })
     alert("Order placed successfully")
     localStorage.removeItem("cart")

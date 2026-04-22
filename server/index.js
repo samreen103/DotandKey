@@ -26,40 +26,45 @@ mongoose.connect(process.env.MONGO_URL)
 .then(()=> console.log("MongoDB Connected"))
 .catch(err=>console.log(err));
 
-app.post("/Signup", (req,res)=>{
-    const{email,password}= req.body;
-    UsersModel.findOne({email:email})
-    .then(users=>{
-        if(users){
-            if(users.password === password)
-            {
-                res.json("Success")
-            }
-            else{
-                res.json("The Password is Incorrect")
-            }
-        } else{
-            res.json("No record existing")
-        }
-    })
-
-})
-
-app.post("/login", async(req ,res)=> {
-    console.log("Request Recieved:", req.body);
-
-    UsersModel.create(req.body)
-    .then(users =>{
-        console.log("Saved :",users);
-        res.json(users);
-})
-    .catch(err =>
-        { console.log("Error:",err);
-          res.status(500).json(err);
-        });
-
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await UsersModel.findOne({ email });
+    if (!user) {
+      return res.json("No user found");
+    }
+    if (user.password !== password) {
+      return res.json("Wrong password");
+    }
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json("Error");
+  }
 });
+    
 
+app.post("/signup", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    const existingUser = await UsersModel.findOne({ email });
+    if (existingUser) {
+      return res.json("User already exists");
+    }
+    const newUser = new UsersModel({
+      name,
+      email,
+      password
+    });
+
+    await newUser.save();
+    res.json(newUser);   
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json("Error in signup");
+  }
+});
 
 const {cloudinaryStorage, CloudinaryStorage}=require("multer-storage-cloudinary");
 const storage=new CloudinaryStorage({
@@ -198,14 +203,14 @@ app.post('/orders',async(req,res)=>{
 app.post("/place", async (req, res) => {
   try {
     const { items, address, payment, total, status ,paymentId,userId} = req.body;
-    const newOrder = new OrdersModel({
-      userId:userId,  
+    const newOrder = new OrdersModel({ 
       items: items,
       address: address,
       payment: payment,
       total: total,
       status:status ,
-      paymentId:paymentId
+      paymentId:paymentId,
+      userId:userId, 
     });
     await newOrder.save();
 
@@ -257,13 +262,16 @@ app.put('/updateStatus/:id', async (req, res) => {
   }
 });
 
-app.get('/myOrders/:userId',async(req,res)=>{
-    try{
-        const orders=await OrdersModel.find({userId:req.params.userId});
-        res.json(orders);
-    }catch(err){
-        res.status(500).json(err);
-    }
+app.get("/myOrders/:userId", async (req, res) => {
+  try {
+    const orders = await OrdersModel.find({
+      userId: req.params.userId
+    });
+    res.json(orders);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json("Error fetching orders");
+  }
 });
 
 const PORT=process.env.PORT ||3001;
