@@ -1,11 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
+import {useState} from "react"
 import {Link} from "react-router-dom";
 
 function Navigation() 
 {
+  const [user ,setUser]=useState();
+  const[open,setOpen]=useState();
+
   const navigate = useNavigate();
 
+  useEffect(()=>
+  {
+    const data=JSON.parse(localStorage.getItem("user"));
+    setUser(data);
+  },[]);
+
+  const handleLogout=()=>{
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/login")
+  }
 
   return (
     
@@ -25,7 +40,30 @@ function Navigation()
 
           <div class="icons">
            <Link to="Cart" ><i class="fa-solid fa-cart-arrow-down"></i></Link>
-          <Link to="Login" ><i class="fa-solid fa-circle-user"></i></Link>
+
+           <div className="user-box">
+            {! user ?(
+
+              <i class="fa-solid fa-circle-user" onClick={()=>navigate("/Login")}></i>
+            ):(
+              <div className="user-menu">
+                <span onClick={()=>setOpen(!open)}>
+                  {user.name}
+                </span>
+                {open && (
+                  <div className="dropdown">
+                    <p onClick={()=>navigate('/MyOrders')}>My Orders</p>
+                    <p onClick={handleLogout}>Logout</p>
+                    </div>
+
+                )}
+                </div>
+            )}
+           </div>
+           
+
+
+          {/* <Link to="Login" ><i class="fa-solid fa-circle-user"></i></Link> */}
 
 
           </div>

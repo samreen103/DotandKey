@@ -368,3 +368,18 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+.user-box{
+  cursor: pointer;
+  position: relative;
+}
+.user-menu span{
+  font-weight: 500;
+}
+
+.dropdown{
+  position: absolute;
+  top:30px;
+  background: white;
+  width: 120px;
+}
