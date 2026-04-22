@@ -1,0 +1,69 @@
+ .Div1 {
+  height: 120vh;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  background: #fff0f6;
+  width: 360px;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.div2 {
+  background: #ce6391;
+  font-size: 13px;
+  text-align: center;
+}
+.div2 p{
+  text-align: center;
+  margin-left: 25px;
+}
+.phone {
+  margin-bottom: 20px;
+  display: flex; 
+  flex-direction: column; 
+  width: 100%;
+}
+
+.phone label{
+  margin-bottom: 5px; 
+  margin-left: -290px;
+  font-size: 15px;
+  color: #333;
+}
+.phone input{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.continuebtn {
+  background: #f84bb3;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  margin-top: 15px;
+}
+.logoimg{
+    height: 90px;
+    width: 60px;
+} 
+
+
+
+ 
