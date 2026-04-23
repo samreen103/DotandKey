@@ -19,10 +19,13 @@ function Payments()
     setCartItems(data);
   },[]);
 
- let total = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      total = total + cartItems[i].price * cartItems[i].quantity;
-  }
+ let subtotal = 0;
+for (let i = 0; i < cartItems.length; i++) {
+  subtotal += cartItems[i].price * cartItems[i].quantity;
+}
+
+const gst = subtotal * 0.18;
+const finalTotal = subtotal + gst;
   
 const loadRazorpay=()=>{
   return new Promise((resolve)=>{
@@ -42,7 +45,7 @@ const placeOrder =async () => {
 
    if (!user) {
       alert("Please login first");
-      navigate("/login");
+      navigate("/Signup");
       return;
     }
 
@@ -59,7 +62,7 @@ const placeOrder =async () => {
       items:cart,
       address:address,
       payment:"COD",
-      total:total,
+      total:finalTotal,
       status:"Pending",
       userId:user._id
     })
@@ -95,7 +98,7 @@ const placeOrder =async () => {
          items: cart,
          address: address,
          payment: "Razorpay",
-         total: total,
+         total: finalTotal,
          paymentId:response.razorpay_payment_id,
          userId:user._id
         
@@ -124,8 +127,6 @@ const placeOrder =async () => {
 }
 }
 }
-
-  
     return(
         <div className="payment-container">
           <div className="payment-options">
@@ -138,10 +139,9 @@ const placeOrder =async () => {
               Razorpay
             </label>
           </div>
-      <h2> Razorpay Payment</h2>
       
-      <h3>Total Amount: ₹{total}</h3>
-      <button onClick={placeOrder}> Pay</button>
+  <h3>Total Amount: ₹{finalTotal}</h3>    
+  <button onClick={placeOrder}> Pay</button>
     </div>
   );
 }

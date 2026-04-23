@@ -5,22 +5,19 @@ import { useNavigate } from "react-router-dom";
 function MyOrders() {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
-
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     if (!user) {
-      navigate("/login");
+      navigate("/Login");
       return;
     }
 
-    axios
-      .get(`https://dotandkey.onrender.com/myOrders/${user._id}`)
+    axios.get(`https://dotandkey.onrender.com/myOrders/${user._id}`)
       .then((res) => {
         setOrders(res.data);
       })
       .catch((err) => console.log(err));
-
   }, [user]);
 
   return (

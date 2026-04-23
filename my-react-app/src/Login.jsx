@@ -13,16 +13,11 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("https://dotandkey.onrender.com/login", {
-      email,
-      password
-    })
+    axios.post("https://dotandkey.onrender.com/login", { email, password})
     .then((result) => {
-
       if (result.data === "No user found" || result.data === "Wrong password") {
         alert(result.data);
       } else {
-        
         localStorage.setItem("user", JSON.stringify(result.data));
         navigate("/");
         window.location.reload();

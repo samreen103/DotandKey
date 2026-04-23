@@ -9,11 +9,10 @@ const path=require('path')
 const UsersModel = require('./models/Users')
 const ProductsModel=require('./models/Products')
 const OrdersModel=require('./models/Order')
-const sendMail=require("./mailsend")
 const Razorpay=require("razorpay")
 const cloudinary=require("./cloudinary");
-
-
+const sendEmail=require("./sendEmail");
+const generatePDF=require("./createinvoice")
 
 const app= express()
 app.use(express.json())
@@ -213,15 +212,16 @@ app.post("/place", async (req, res) => {
       userId:userId, 
     });
     await newOrder.save();
-
-     sendMail(
-        address.email,
-        "<b>Dot and Key</b>  Order Placed",
-        `<h3>Hello ${address.name}</h3>
-        <p>Your Order has been placed successfully</p>
-        <p>
-        <p>Status:Pending</p> `
-    )
+    const pdfBuffer=await generatePDF(newOrder);
+    await sendEmail(
+      address.email,
+      "Order Placed -Dot & Key",
+      `<h2>Hello ${address.name}</h2>
+      <p>Your Order has been placed Successfully</p>
+      <p>Total:${total}</p>
+      <p> Statis: Pending</p>`,
+      pdfBuffer
+    );
     res.json("Order placed successfully");
   } catch (err) {
     console.log(err);
@@ -239,22 +239,14 @@ app.put('/updateStatus/:id', async (req, res) => {
   try {
     const id = req.params.id;      
     const status = req.body.status;    
-    const updatedOrder = await OrdersModel.findByIdAndUpdate(id,{ status: status });
-    let message="";
-    if(status==="Shipped"){
-        message=`<h3>Hello ${updatedOrder.address.name}</h3>
-        <p>Your order has been Shipped </p>`
-    }
-    else if(status==="Delivered"){
-        message=`<h3>Hello ${updatedOrder.address.name}</h3>
-        <p>Your order has been Delivered </p>`
-    }
-    if (message !==""){
-        sendMail(
-        updatedOrder.address.email,
-        "<b>Dot and Key</b> Order Update" ,message
-        );
-    }
+    const updatedOrder = await OrdersModel.findByIdAndUpdate(id,{ status: status },{new:true});
+    await sendEmail(
+      updatedOrder.address.email,
+      "Order Status Updated",
+      `<h2>Hello ${updatedOrder.address.name}</h2>
+      <p>Your order status has been updated </p>
+      <p> Status :${status}</p>`
+    )
     res.json(updatedOrder);
   } catch (err) {
     console.log(err);

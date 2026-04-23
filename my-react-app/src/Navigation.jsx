@@ -18,7 +18,7 @@ function Navigation()
   const Logout=()=>{
     localStorage.removeItem("user");
     setUser(null);
-    navigate("/Login")
+    navigate("/")
   }
 
   return (
@@ -41,13 +41,15 @@ function Navigation()
            <Link to="Cart" ><i class="fa-solid fa-cart-arrow-down"></i></Link>
             { user ?(
               <div className="user-section">
-              <span>{user.name}</span>
-                  
+                <div className="user-top">
+                  <i className="fa-solid fa-circle-user"></i>
+                 <span className="user-name">{user.name}</span>
+                 </div>
+                   <div className="dropdown">
                     <p onClick={()=>navigate('/MyOrders')}>My Orders</p>
                     <p onClick={Logout}>Logout</p>
                     </div>
-                    
-
+                    </div>
                 ):(
                  <i className="fa-solid fa-circle-user" onClick={()=>navigate("/Signup")}></i>
                 )}
