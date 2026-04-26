@@ -202,7 +202,6 @@ app.post('/orders',async(req,res)=>{
 app.post("/place", async (req, res) => {
   try {
     const { items, address, payment, total, status ,paymentId,userId} = req.body;
-    
     const newOrder = new OrdersModel({ 
       items: items,
       address: address,
@@ -225,9 +224,11 @@ app.post("/place", async (req, res) => {
       success: true, 
       message: "Order placed successfully" 
     });
-  } catch (err) {
-    console.log("Error",err);
-    res.status(500).json(err.message);
+  }  catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
   }
 });
 
@@ -237,25 +238,44 @@ app.get('/getOrders',(req,res)=>{
     .catch((err)=>res.status(500).json(err))
 })
 
-app.put('/updateStatus/:id', async (req, res) => {
+app.put("/updateStatus/:id", async (req, res) => {
   try {
-    const id = req.params.id;      
-    const status = req.body.status;    
-    const updatedOrder = await OrdersModel.findByIdAndUpdate(id,{ status: status },{new:true});
-    await sendEmail(
-      updatedOrder.address.email,
-      "Order Status Updated",
-      `<h2>Hello ${updatedOrder.address.name}</h2>
-      <p>Your order status has been updated </p>
-      <p> Status :${status}</p>`
-    )
-    res.json(updatedOrder);
+    const id = req.params.id;
+    const status = req.body.status;
+    const updatedOrder = await OrdersModel.findByIdAndUpdate(
+      id,
+      { status: status },
+      { new: true }
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json("Order not found");
+    }
+    try {
+      await sendEmail(
+        updatedOrder.address.email,
+        "Order Status Updated",
+        `<h2>Hello ${updatedOrder.address.name}</h2>
+         <p>Your order status has been updated.</p>
+         <p><strong>Status:</strong> ${status}</p>`
+      );
+    } catch (emailErr) {
+      console.log("Email failed:", emailErr);
+    }
+    res.status(200).json({
+      success: true,
+      message: "Status updated",
+      order: updatedOrder,
+    });
+
   } catch (err) {
-    console.log(err);
-    res.status(500).json("Error updating status");
+    console.log("Update error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error updating status",
+    });
   }
 });
-
 app.get("/myOrders/:userId", async (req, res) => {
   try {
     const orders = await OrdersModel.find({
