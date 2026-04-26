@@ -64,7 +64,7 @@ function ManageOrders()
                                     {order.address.state}<br></br>
                                     {order.address.pincode}<br></br>
                                 </td>
-                                <td>{order.total}</td>
+                                <td>{order.total .toFixed(2)}</td>
                                 <td>{order.payment}</td>
                                 <td>{order.paymentId}</td>
                                 <td>

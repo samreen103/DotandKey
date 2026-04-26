@@ -221,6 +221,10 @@ select.input-box{
   padding:20px;
 
 }
+.order-container h2{
+  text-align: center;
+}
+
 .order-table{
   width: 100%;
   margin-top: 20px;

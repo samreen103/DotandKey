@@ -1,0 +1,95 @@
+
+.cart {
+  padding: 30px 50px;
+  background: #f9f9f9;
+  min-height: 100vh;
+}
+
+.cart h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.cart-table th {
+  background: #6b4848;
+  color: white;
+  padding: 12px;
+  font-size: 14px;
+}
+
+.cart-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-table img {
+  border-radius: 8px;
+}
+
+.cart-table button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: none;
+  background: #6b4848;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cart-table button:hover {
+  background: #563737;
+}
+
+
+.cart h3 {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.check-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #6b4848;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.check-btn:hover {
+  background: #563737;
+}
+
+.cart p {
+  font-size: 16px;
+  color: gray;
+}
+
+@media (max-width: 768px) {
+  .cart {
+    padding: 15px;
+  }
+
+  .cart-table th,
+  .cart-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .check-btn {
+    width: 100%;
+  }
+}

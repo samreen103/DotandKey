@@ -1,11 +1,7 @@
 import {useEffect,useState } from "react";
 import {  useNavigate } from "react-router-dom";
-
-import axios from "axios";
+import "./ProductDetails.css";import axios from "axios";
 import { useParams  } from "react-router-dom";
-import "./Home.css";
-
-
 
 function ProductDetails()
 {

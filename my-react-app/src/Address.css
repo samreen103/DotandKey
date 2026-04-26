@@ -1,0 +1,41 @@
+.address-container {
+  width: 500px;
+  margin: 50px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.address-container h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.address-container input,
+.address-container textarea {
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+.address-container textarea {
+  resize: none;
+  height: 80px;
+}
+
+.address-container button {
+  padding: 10px;
+  background: #6b4848;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.address-container button:hover {
+  background: #563737;
+}

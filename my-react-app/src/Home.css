@@ -1,405 +1,69 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+
+.container {
+  width: 100%;
+  margin-bottom: 30px;
 }
 
-.div1 {
-  background: pink;
-  padding: 5px;
-  font-size: 13px;
-  text-align: center;
-  width: 203vh;
-  height: 10px;
-}
-
-.div2 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background-color: white;
-}
-
-.logo {
-  width: 120px;
-}
-
-.search {
-  display: flex;
-  align-items: center; 
-  gap: 8px;
-  border: 1px solid #ccc;
-  padding: 6px 12px;
-  border-radius: 20px;
-  margin-left: 450px;
-}
-
-.search input {
-  border: none;
-  outline: none;
-}
-
-.nav-links{
-  display:flex;
-  justify-content: center;
-  gap: 40px;
-   border-top: 1px solid #eee;
-
-
-}
-.nav-links div{
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  list-style: none;
-  padding: 10px 0;
-  margin: 0;
-}
-
-.nav li {
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.Offer {
-  text-align: center;
-  font-weight: bold;
-  padding: 10px;
-  background-image: linear-gradient(to right,pink ,lightblue);
- 
-
+.card {
+  width: 100%;
 }
 
 .carousel {
-  margin-top: 3px;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 450px;
   object-fit: cover;
 }
 
-.Categories{
-  margin-top: 10px;
-  text-align: center;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 20px;
-  cursor: pointer;
+
+.home {
+  padding: 20px 40px;
 }
 
-
-.product-container{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
-.product-card{
-  width:200px;
-  padding:15px;
-  border-radius:5px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
-  text-align:center;
-  background:white;
-}
-
-.product-card img{
-  width:100%;
-  height:150px;
-  object-fit:cover;
-  border-radius:8px;
-}
-
-.horizontalline{
-  height: 60px;
-  width:90px;
-  margin-left: 710px;
-  align-content: center;
-
-}
-
-.about-img{
-  width: 100%;
-  height: 450px;
-  object-fit: cover;
-}
-
-.featured 
-{
-  background-image: linear-gradient(to right,lightpink ,lightcoral);
-  margin-top: 40px;
-  text-align: center;
-  padding: 30px;
-  text-align: center;
-  padding: 30px;
-}
-.award
-{
-  border-radius: 50px solid;
-
-}
-.footer{
-    border-top: 1px solid #eee;
-
-  background-color: white;
-}
-.footer-wrapper
-{
-  margin-top: 40px;
-  display: flex;
-  gap: 25px;
-  padding: 40px;
-  justify-content: center;
-}
-.links
-{
-  text-decoration: none;
-  color: #000;
-}
-.list
-{
-  list-style-type: none;
-  line-height: 2em;
-}
-.media
-{
-  display: flex;
-  gap :10px
-}
-.copyright
-{
-  text-align: center;
-}
-
-.logbtn{
-  background-color: transparent;
-  border: 1px solid white;
-}
-
-.product-link{
-  text-decoration: none;
-  color: #000;
-}
-
-.details{
-  display: flex;
-  gap: 30px;
-  padding: 40px;
-}
-
-.details img{
-  width: 300px;
-  border-radius: 5px;
-}
-.cart{
-  padding: 20px;
-  margin-left: 350px;
-
-}
-.cart-table{
-  width:90px;
-  margin:20px;
-  background: white;
- 
-}
-.cart-table th ,
-.cart-table td{
-
-  padding: 15px 20px;
-  text-align: center;
-  border-bottom: 1px solid black;
-}
-
-.cart-table img{
- border-radius: 6px;
-}
-.cart-table button{
-  padding: 5px 10px;
-  margin: 0 5px;
-  cursor: pointer;
-}
-.cart h2{
-  margin-left: 350px;
-}
-
-.checkout {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.checkout h2 {
+.home h2 {
   margin-bottom: 20px;
-  font-size: 26px;
   font-weight: 600;
-  text-align: center;
 }
 
-.check-details {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.product-card {
+  background: white;
   padding: 15px;
-  margin-bottom: 15px;
-  background: #fff;
   border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.check-details img {
-  width: 80px;
-  height: 80px;
+.product-card img {
+  width: 100%;
+  height: 200px;
   object-fit: cover;
   border-radius: 8px;
 }
-
-.quantity{
-  margin-top: 2px;
+.product-card h4 {
+  margin: 10px 0 5px;
   font-size: 15px;
+  font-weight: 500;
 }
 
-.checkout h3 {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 20px;
-}
-.checkout button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  background-color: gray;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
+.product-card p {
+  color: #6b4848;
+  font-weight: 600;
 }
 
-.check-btn{
-  margin-top: 20px;
-  padding: 12px;
-  background-color: gray;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-left: 340px;
+.product-link {
+  text-decoration: none;
+  color: black;
 }
-.address-container {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 20px;
-}
-.address-container h2 {
-  margin-bottom: 20px;
-}
+@media (max-width: 768px) {
+  .carousel {
+    height: 200px;
+  }
 
-.address-container input,
-.address-container textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.address-container button {
-  width: 100%;
-  padding: 12px;
-  background-color:gray;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.payment-container {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.payment-container h2 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.payment-options {
-  margin-top: 2px;
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.payment-options label {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.payment-container button {
-  width: 100%;
-  padding: 12px;
-  background-color:gray;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.payment-box {
-  margin: 15px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.payment-box input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.bill {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.bill p {
-  margin: 5px 0;
-}
-
-.icons i  {
-  margin-left: 125px;
-  font-size: 18px;
-  cursor: pointer;
- 
-}
-
-.user-section{
-  position: relative;
-}
-.user-top{
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-}
-.user-name{
-  font-size: 14px;
-}
-.dropdown{
-  position: absolute;
-  top:25px;
-  background: white;
-  border: 1px solid;
-  width:120px;
-  
-}
-.dropdown p{
-  margin: 0;
-  padding: 8px 10px;
-  font-size: 13px;
+  .home {
+    padding: 15px;
+  }
 }

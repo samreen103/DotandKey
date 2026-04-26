@@ -56,9 +56,6 @@ function Layout() {
         <Route path="/Address" element={<Address/>}/>
         <Route path="/Payments" element={<Payments/>}/>
         <Route path="/MyOrders" element={<MyOrders/>}/>
-
-
-
       </Routes>
      {!hideNavandFooter && <Footer/>}
     </div>
