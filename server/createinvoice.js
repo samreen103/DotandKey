@@ -38,7 +38,7 @@ const generatePDF = (order) => {
           total += itemTotal;
 
           doc.fontSize(12).text(
-            `${index + 1}. ${item.name} | Qty: ${qty} | ₹${price} | Total: ₹${itemTotal}`
+            `${index + 1}. ${item.name} | Qty: ${qty} | ₹ ${price} | Total: ₹ ${itemTotal}`
           );
         });
       } else {
@@ -49,9 +49,9 @@ const generatePDF = (order) => {
       const gst = total * 0.18;
       const finalTotal = total + gst;
 
-      doc.fontSize(12).text(`Subtotal: ₹${total.toFixed(2)}`);
-      doc.text(`GST (18%): ₹${gst.toFixed(2)}`);
-      doc.text(`Grand Total: ₹${finalTotal.toFixed(2)}`);
+      doc.fontSize(12).text(`Subtotal: ₹ ${total.toFixed(2)}`);
+      doc.text(`GST (18%): ₹ ${gst.toFixed(2)}`);
+      doc.text(`Grand Total: ₹ ${finalTotal.toFixed(2)}`);
 
       doc.moveDown();
 

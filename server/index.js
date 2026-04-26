@@ -242,6 +242,7 @@ app.put("/updateStatus/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const status = req.body.status;
+
     const updatedOrder = await OrdersModel.findByIdAndUpdate(
       id,
       { status: status },
@@ -251,31 +252,36 @@ app.put("/updateStatus/:id", async (req, res) => {
     if (!updatedOrder) {
       return res.status(404).json("Order not found");
     }
-    try {
-      await sendEmail(
-        updatedOrder.address.email,
-        "Order Status Updated",
-        `<h2>Hello ${updatedOrder.address.name}</h2>
-         <p>Your order status has been updated.</p>
-         <p><strong>Status:</strong> ${status}</p>`
-      );
-    } catch (emailErr) {
-      console.log("Email failed:", emailErr);
+
+    console.log("Updated Order:", updatedOrder);
+    console.log("Email:", updatedOrder?.address?.email);
+
+    // ✅ Check email exists
+    if (updatedOrder?.address?.email) {
+      try {
+        await sendEmail(
+          updatedOrder.address.email,
+          "Order Status Updated",
+          `<h2>Hello ${updatedOrder.address.name}</h2>
+           <p>Your order status is now <b>${status}</b></p>`
+        );
+        console.log("Status email sent ✅");
+      } catch (emailErr) {
+        console.log("Email failed ❌", emailErr);
+      }
+    } else {
+      console.log("No email found in order ❌");
     }
-    res.status(200).json({
-      success: true,
-      message: "Status updated",
-      order: updatedOrder,
-    });
+
+    res.json(updatedOrder);
 
   } catch (err) {
-    console.log("Update error:", err);
-    res.status(500).json({
-      success: false,
-      message: "Error updating status",
-    });
+    console.log(err);
+    res.status(500).json("Error updating status");
   }
 });
+
+
 app.get("/myOrders/:userId", async (req, res) => {
   try {
     const orders = await OrdersModel.find({
