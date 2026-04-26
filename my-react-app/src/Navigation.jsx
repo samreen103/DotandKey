@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 function Navigation() 
 {
-  const [user ,setUser]=useState(null);
+  const [user ,setUser]=useState();
 
   const navigate = useNavigate();
 

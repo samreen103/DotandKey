@@ -16,7 +16,9 @@ function Cart() {
       if (!data[i].quantity) {
         data[i].quantity = 1;
       }
+      data[i].price = Number(data[i].price);
     }
+    
     setCartItems(data);
     localStorage.setItem("cart", JSON.stringify(data));
   }, []);

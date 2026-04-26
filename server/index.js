@@ -1,6 +1,5 @@
 
 require("dotenv").config();
-
 const express = require("express")
 const mongoose=require('mongoose')
 const cors= require("cors")
@@ -11,8 +10,7 @@ const ProductsModel=require('./models/Products')
 const OrdersModel=require('./models/Order')
 const Razorpay=require("razorpay")
 const cloudinary=require("./cloudinary");
-const sendEmail=require("./sendEmail");
-const generatePDF=require("./createinvoice")
+
 
 const app= express()
 app.use(express.json())
@@ -201,7 +199,9 @@ app.post('/orders',async(req,res)=>{
 
 app.post("/place", async (req, res) => {
   try {
+    console.log("BODY:", req.body);
     const { items, address, payment, total, status ,paymentId,userId} = req.body;
+    
     const newOrder = new OrdersModel({ 
       items: items,
       address: address,
@@ -212,20 +212,10 @@ app.post("/place", async (req, res) => {
       userId:userId, 
     });
     await newOrder.save();
-    const pdfBuffer=await generatePDF(newOrder);
-    await sendEmail(
-      address.email,
-      "Order Placed -Dot & Key",
-      `<h2>Hello ${address.name}</h2>
-      <p>Your Order has been placed Successfully</p>
-      <p>Total:${total}</p>
-      <p> Statis: Pending</p>`,
-      pdfBuffer
-    );
-    res.json("Order placed successfully");
+    res.status(200).json({ success: true, message: "Order placed successfully" });
   } catch (err) {
-    console.log(err);
-    res.status(500).json("Error placing order");
+    console.log("Real error",err);
+    res.status(500).json(err.message);
   }
 });
 
