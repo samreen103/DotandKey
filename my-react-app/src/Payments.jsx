@@ -9,7 +9,6 @@ function Payments() {
   const [payment, setPayment] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
 
-  
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem("cart"));
     if (!data) data = [];
@@ -67,7 +66,6 @@ function Payments() {
       return;
     }
 
-    // ================= COD =================
     if (payment === "COD") {
       try {
         await axios.post("https://dotandkey.onrender.com/place", {
@@ -88,19 +86,16 @@ function Payments() {
         alert("Order failed ");
       }
     }
-
-    // ================= RAZORPAY =================
     else if (payment === "Razorpay") {
       const loaded = await loadRazorpay();
 
       if (!loaded) {
-        alert("Razorpay SDK failed to load");
+        alert("Razorpay failed to load");
         return;
       }
 
       try {
-        const res = await axios.post(
-          "https://dotandkey.onrender.com/orders",
+        const res = await axios.post( "https://dotandkey.onrender.com/orders",
           {
             amount: Math.round(finalTotal), 
           }

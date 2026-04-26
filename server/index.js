@@ -10,6 +10,8 @@ const ProductsModel=require('./models/Products')
 const OrdersModel=require('./models/Order')
 const Razorpay=require("razorpay")
 const cloudinary=require("./cloudinary");
+const generatePDF = require("./createinvoice");
+const sendEmail = require("./sendEmail");
 
 
 const app= express()
@@ -199,7 +201,6 @@ app.post('/orders',async(req,res)=>{
 
 app.post("/place", async (req, res) => {
   try {
-    console.log("BODY:", req.body);
     const { items, address, payment, total, status ,paymentId,userId} = req.body;
     
     const newOrder = new OrdersModel({ 
@@ -212,9 +213,20 @@ app.post("/place", async (req, res) => {
       userId:userId, 
     });
     await newOrder.save();
-    res.status(200).json({ success: true, message: "Order placed successfully" });
+    const pdfBuffer = await generatePDF(newOrder);
+    await sendEmail(
+      address.email,
+      "Your Order Invoice",
+      `<h2>Hi ${address.name}, your order is confirmed!</h2>
+       <p>Thank you for shopping with us.</p>`,
+      pdfBuffer
+    );
+    res.status(200).json({ 
+      success: true, 
+      message: "Order placed successfully" 
+    });
   } catch (err) {
-    console.log("Real error",err);
+    console.log("Error",err);
     res.status(500).json(err.message);
   }
 });
