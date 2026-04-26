@@ -10,19 +10,21 @@ const sendEmail = async (to, subject, html, pdfBuffer) => {
       subject: subject,
       html: html,
 
-      attachments: [
-        {
-          filename: "invoice.pdf",
-          content: pdfBuffer.toString("base64"),
-          encoding: "base64", 
-        },
-      ],
+      attachments: pdfBuffer
+        ? [
+            {
+              filename: "invoice.pdf",
+              content: pdfBuffer.toString("base64"),
+              encoding: "base64",
+            },
+          ]
+        : [],
     });
 
     console.log("Email sent ");
   } catch (err) {
-    console.log("Resend error", err);
+    console.log("Resend error ", err);
   }
 };
 
-module.exports = sendEmail; 
+module.exports = sendEmail;
