@@ -244,33 +244,27 @@ app.put("/updateStatus/:id", async (req, res) => {
     const status = req.body.status;
 
     const updatedOrder = await OrdersModel.findByIdAndUpdate(
-      id,
-      { status: status },
-      { new: true }
+      id,{ status: status },{ new: true }
     );
 
     if (!updatedOrder) {
       return res.status(404).json("Order not found");
     }
 
-    console.log("Updated Order:", updatedOrder);
-    console.log("Email:", updatedOrder?.address?.email);
-
-    // ✅ Check email exists
-    if (updatedOrder?.address?.email) {
+    if (updatedOrder.address.email) {
       try {
         await sendEmail(
           updatedOrder.address.email,
           "Order Status Updated",
           `<h2>Hello ${updatedOrder.address.name}</h2>
-           <p>Your order status is now <b>${status}</b></p>`
+           <p>Your order status is : ${status}</p>`
         );
-        console.log("Status email sent ✅");
+        console.log("Status email sent ");
       } catch (emailErr) {
-        console.log("Email failed ❌", emailErr);
+        console.log("Email failed ", emailErr);
       }
     } else {
-      console.log("No email found in order ❌");
+      console.log("No email found in order");
     }
 
     res.json(updatedOrder);
