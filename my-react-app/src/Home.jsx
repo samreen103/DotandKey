@@ -54,7 +54,6 @@ function Home() {
       </Slider>
     </div>
 
-    <Categories/>
 
     <div className="home">
       <h2>All Products</h2>
