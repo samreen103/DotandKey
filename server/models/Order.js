@@ -41,8 +41,10 @@ const OrderSchema=new mongoose.Schema({
     {
         type:String
     }
+
      
-});
+},{timestamps:true}
+);
 
 const OrdersModel=mongoose.model("order" , OrderSchema)
 module.exports=OrdersModel;
