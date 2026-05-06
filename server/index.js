@@ -337,6 +337,20 @@ app.get("/admin-stats", async (req, res) => {
   }
 });
 
+app.get("/search/:key",async(req,res)=>{
+  try{
+    const key=req.params.key;
+    const products=await ProductsModel.find({
+      name:{$regex:key , $options:"i"}
+    });
+    res.json(products);
+  }catch(err)
+  {
+    console.log(err);
+    res.status(500).json("Search error");
+  }
+});
+
 const PORT=process.env.PORT ||3001;
 app.listen(PORT, () =>{
     console.log("server is running on port"+ PORT);

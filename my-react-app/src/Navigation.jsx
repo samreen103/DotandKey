@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 function Navigation() 
 {
   const [user ,setUser]=useState();
+  const [search , setSearch]=useState();
 
   const navigate = useNavigate();
 
@@ -33,8 +34,8 @@ function Navigation()
           <img src="/Dot_Key_Logo.webp" alt="Logo" class="logo" />
 
           <div className="search">
-            <i className="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="search for vitamin c" />
+            <i className="fa-solid fa-magnifying-glass" onClick={()=>navigate(`/search/${search}`)}></i>
+            <input type="text" placeholder="search for vitamin c" value={search} onChange={(e)=>setSearch(e.target.value)}/>
           </div>
 
           <div className="icons">

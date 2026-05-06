@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  PieChart,
-  Pie,
-  Cell
-} from "recharts";
-
+import {LineChart,Line, XAxis,YAxis, Tooltip, PieChart,Pie,Cell} from "recharts";
 import "./Admin.css";
 
 function AdminHome() {
-
   const [stats, setStats] = useState({
     products: 0,
     users: 0,
@@ -79,33 +68,47 @@ function AdminHome() {
 
         <div className="chart-box">
 
-          <h4>Order Status</h4>
+  <h4>Order Status</h4>
 
-          <PieChart width={300} height={250}>
+  <PieChart width={300} height={250}>
 
-            <Pie
-              data={[
-                {
-                  name: "Delivered",
-                  value: stats.delivered
-                },
-                {
-                  name: "Pending",
-                  value: stats.pending
-                }
-              ]}
-              dataKey="value"
-              outerRadius={80}
-            >
+    <Pie
+      data={[
+        {
+          name: "Delivered",
+          value: stats.delivered
+        },
+        {
+          name: "Pending",
+          value: stats.pending
+        }
+      ]}
+      dataKey="value"
+      outerRadius={80}
+    >
 
-              <Cell fill="#604caf" />
-              <Cell fill="#5dd754" />
+      <Cell fill="#5dd754" />
+      <Cell fill="#43c0cb" />
 
-            </Pie>
+    </Pie>
 
-          </PieChart>
+  </PieChart>
 
-        </div>
+  <div className="legend">
+
+    <div className="legend-item">
+      <span className="green"></span>
+      Delivered
+    </div>
+
+    <div className="legend-item">
+      <span className="blue"></span>
+      Pending
+    </div>
+
+  </div>
+
+</div>
 
       </div>
 

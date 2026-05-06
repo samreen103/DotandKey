@@ -9,6 +9,7 @@ import ManageUsers from "./ManageUsers";
 import EditUser from "./EditUser";
 import Login from "./Login";
 import Signup from "./Signup";
+import Search from "./Search"
 import Home from "./Home";
 import Footer from "./Footer";
 import Bestsellers from "./Bestsellers";
@@ -27,7 +28,7 @@ import Payments from "./Payments";
 
 function Layout() {
   const location=useLocation();
-  const hideNavandFooter= location.pathname==="/Adminlogin"|| location.pathname==="/admindashboard" || location.pathname==="/AddProduct" || location.pathname==="/ManageProducts" ||location.pathname==="/ManageOrders"|| location.pathname==="/ManageUsers"  || location.pathname.includes("/EditProduct") || location.pathname.includes("/EditUser") ;
+  const hideNavandFooter= location.pathname==="/Adminlogin"|| location.pathname==="/admindashboard" || location.pathname==="/AddProduct" || location.pathname==="/ManageProducts" ||location.pathname==="/ManageOrders"|| location.pathname==="/ManageUsers"  || location.pathname==="/AdminHome"|| location.pathname.includes("/EditProduct") || location.pathname.includes("/EditUser") ;
   
   
   return (
@@ -58,6 +59,7 @@ function Layout() {
         <Route path="/Address" element={<Address/>}/>
         <Route path="/Payments" element={<Payments/>}/>
         <Route path="/MyOrders" element={<MyOrders/>}/>
+        <Route path="/search/:key" element={<Search/>}/>
       </Routes>
      {!hideNavandFooter && <Footer/>}
     </div>
