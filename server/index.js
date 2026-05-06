@@ -288,39 +288,50 @@ app.get("/myOrders/:userId", async (req, res) => {
   }
 });
 
-app.get("/admin-stats",async(req,res)=>{
-  try{
-    const products= await ProductsModel.countDocuments();
-    const users=await UsersModel.countDocuments();
-    const orders=await OrdersModel.find();
+app.get("/admin-stats", async (req, res) => {
+  try {
+    const products = await ProductsModel.countDocuments();
+    const users = await UsersModel.countDocuments();
+    const orders = await OrdersModel.find();
 
-    const totalOrders=orders.length;
+    const totalOrders = orders.length;
 
-    let delivered=0;
-    let pending=0;
+    let delivered = 0;
+    let pending = 0;
 
-    const ordersByDate={};
-    orders.forEach(order=>{
-      const date=new Date(order.createdAt).toLocalDateString();
-      if(order.status==="Delivered") 
+    const ordersByDate = {};
+
+    orders.forEach(order => {
+
+      const date = new Date(order.createdAt).toLocaleDateString();
+
+      if (order.status === "Delivered")
         delivered++;
-      else pending++;
+      else
+        pending++;
 
-      if(ordersByDate[date])
-      {
+      if (ordersByDate[date]) {
         ordersByDate[date]++;
-      } else{
-        ordersByDate[date]=1;
+      } else {
+        ordersByDate[date] = 1;
       }
     });
 
-    const chartData =Object.keys(ordersByDate).map(date=>({
+    const chartData = Object.keys(ordersByDate).map(date => ({
       date,
-      orders:ordersByDate[date]
+      orders: ordersByDate[date]
     }));
 
-    res.json({products,users,orders,totalOrders,delivered,pending,chartData});
-  }catch(err){
+    res.json({
+      products,
+      users,
+      totalOrders,
+      delivered,
+      pending,
+      chartData
+    });
+
+  } catch (err) {
     console.log(err);
     res.status(500).json("Error");
   }
