@@ -8,10 +8,12 @@
   width: 100%;
 }
 
-.carousel {
+.card img{
   object-fit: cover;
 }
-
+.carousel{
+  object-fit: cover;
+}
 
 .home {
   padding: 20px 40px;
@@ -58,12 +60,8 @@
   text-decoration: none;
   color: black;
 }
-@media (max-width: 768px) {
-  .carousel {
-    height: 200px;
-  }
-
-  .home {
-    padding: 15px;
-  }
+.bestimg{
+  object-fit: cover;
+  width: 100%;
 }
+

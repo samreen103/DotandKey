@@ -1,7 +1,7 @@
 
 .div1 {
-  background-color: #6b4848;
-  color: white;
+  background-color: #c3f3f2;
+  color: black;
   padding: 6px 0;
   font-size: 14px;
   text-align: center;
@@ -120,18 +120,3 @@
   color: #6b4848;
 }
 
-@media (max-width: 768px) {
-  .div2 {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .search {
-    width: 100%;
-  }
-
-  .list {
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-}

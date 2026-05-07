@@ -34,8 +34,9 @@ function Navigation()
           <img src="/Dot_Key_Logo.webp" alt="Logo" class="logo" />
 
           <div className="search">
-            <i className="fa-solid fa-magnifying-glass" onClick={()=>navigate(`/search/${search}`)}></i>
             <input type="text" placeholder="search for vitamin c" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+            <i className="fa-solid fa-magnifying-glass" onClick={()=>navigate(`/search/${search}`)}></i>
+
           </div>
 
           <div className="icons">
@@ -61,17 +62,13 @@ function Navigation()
 
         <nav className="nav-links">
           <div className="list">
-            <li><a href="" className="links">SHOP ALL </a></li>
+            <li><Link to="/" className="links">SHOP ALL</Link></li>
             <li><Link to="/Bestsellers" className="links">BEST SELLERS</Link></li>
             <li><Link to="/Newarrivals" className="links">NEW ARRIVALS</Link></li>
             <li><Link to="/Blogs" className="links">BLOGS</Link></li>
           </div>
-
-
         </nav>
       </div>
-
-
   );
 }
 

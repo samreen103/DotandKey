@@ -14,6 +14,7 @@ import Home from "./Home";
 import Footer from "./Footer";
 import Bestsellers from "./Bestsellers";
 import Newarrivals from "./Newarrivals";
+import Blogs from "./Blogs";
 import Navigation from "./Navigation";
 import ProductDetails from "./ProductDetails";
 import Cart from "./Cart";
@@ -52,6 +53,7 @@ function Layout() {
         <Route path="/ManageUsers" element={<ManageUsers/>}/> 
         <Route path="/Bestsellers" element={<Bestsellers/>}/>
         <Route path="/Newarrivals" element={<Newarrivals/>}/>
+        <Route path="/Blogs" element={<Blogs/>}/>
         <Route path="/product/:id" element={<ProductDetails/>}/>
         <Route path="/order/:id" element={<ManageOrders/>}/>
         <Route path="/Cart" element={<Cart/>}/>

@@ -1,0 +1,18 @@
+.footer{
+    background-color: rgb(208, 204, 204);
+}
+.footer-wrapper{
+    display: flex;
+    justify-content: space-between;
+    gap:80px;
+    flex-wrap: wrap;
+}
+.lists{
+    list-style: none;
+}
+.copyright{
+    text-align: center;
+}
+.lists li{
+    margin-bottom: 20px;
+}

@@ -1,6 +1,7 @@
 import {useEffect ,useState} from "react";
 import {useParams,Link} from "react-router-dom";
 import axios from "axios";
+import './Search.css'
 
 function Search()
 {
@@ -15,6 +16,7 @@ function Search()
 
     return(
         <div className="home">
+            <h2> Search Results</h2>
             <div className="product">
                 {products.map((product)=>(
                     <Link to={`/product/${product._id}`} className="productlink" key={product._id}>
@@ -26,9 +28,6 @@ function Search()
                     </Link>
                 ))}
             </div>
-            
-
-
         </div>
     )
 }
