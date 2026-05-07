@@ -12,7 +12,7 @@ function Newarrivals() {
     }, [])
     return (
         <div>
-            <img src="src/images/NEWARRIVAL.webp" alt="banner" className="bestimg" />
+            <img src="/NEWARRIVAL.webp" alt="banner" className="bestimg" />
             <div className="home">
                 <h2>New Arrivals</h2>
                 <div className="product-container">

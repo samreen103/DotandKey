@@ -31,7 +31,7 @@ function Navigation()
 
         <div className="div2">
 
-          <img src="/Dot_Key_Logo.webp" alt="Logo" class="logo" />
+          <img src="/Dot_Key_Logo.webp" alt="Logo" className="logo" />
 
           <div className="search">
             <input type="text" placeholder="search for vitamin c" value={search} onChange={(e)=>setSearch(e.target.value)}/>
@@ -40,7 +40,8 @@ function Navigation()
           </div>
 
           <div className="icons">
-           <Link to="Cart" ><i class="fa-solid fa-cart-arrow-down"></i></Link>
+          <Link to="Contact" ><i className="fa-solid fa-phone"></i></Link>
+           <Link to="Cart" ><i className="fa-solid fa-cart-arrow-down"></i></Link>
             { user ?(
               <div className="user-section">
                 <div className="user-top">

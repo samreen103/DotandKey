@@ -13,7 +13,7 @@ function Bestsellers() {
 
     return (
         <div>
-            <img src="src/images/BESTSELLER.webp" alt="banner" className="bestimg"/>
+            <img src="/BESTSELLER.webp" alt="banner" className="bestimg"/>
 
             <div className="home">
                 <h2>Best Sellers</h2>

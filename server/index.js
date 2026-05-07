@@ -295,6 +295,10 @@ app.get("/admin-stats", async (req, res) => {
     const orders = await OrdersModel.find();
 
     const totalOrders = orders.length;
+    let revenue =0;
+    orders.forEach(order=>{
+      revenue+=order.total;
+    });
 
     let delivered = 0;
     let pending = 0;
@@ -311,9 +315,9 @@ app.get("/admin-stats", async (req, res) => {
         pending++;
 
       if (ordersByDate[date]) {
-        ordersByDate[date]++;
+        ordersByDate[date]+= order.total;
       } else {
-        ordersByDate[date] = 1;
+        ordersByDate[date] = order.total;
       }
     });
 
@@ -328,6 +332,7 @@ app.get("/admin-stats", async (req, res) => {
       totalOrders,
       delivered,
       pending,
+      revenue,
       chartData
     });
 

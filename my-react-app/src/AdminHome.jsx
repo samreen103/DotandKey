@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {LineChart,Line, XAxis,YAxis, Tooltip, PieChart,Pie,Cell} from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, PieChart, Pie, Cell } from "recharts";
 import "./Admin.css";
 
 function AdminHome() {
@@ -10,6 +10,7 @@ function AdminHome() {
     totalOrders: 0,
     delivered: 0,
     pending: 0,
+    revenue: 0,
     chartData: []
   });
 
@@ -42,9 +43,33 @@ function AdminHome() {
           <p>Users</p>
         </div>
 
+        <div className="card">
+          <h3>₹{stats.revenue}</h3>
+          <p>Revenue</p>
+        </div>
+
       </div>
 
       <div className="charts">
+
+        <div className="chart-box">
+          <h4>Revenue Trend</h4>
+          <LineChart
+            width={500}
+            height={250}
+            data={stats.chartData}
+          >
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Line type="monotone"
+              dataKey="orders"
+              stroke="#6b4848"
+              strokeWidth={3} />
+          </LineChart>
+        </div>
+
+
 
         <div className="chart-box">
           <h4>Orders Trend</h4>
@@ -68,47 +93,47 @@ function AdminHome() {
 
         <div className="chart-box">
 
-  <h4>Order Status</h4>
+          <h4>Order Status</h4>
 
-  <PieChart width={300} height={250}>
+          <PieChart width={300} height={250}>
 
-    <Pie
-      data={[
-        {
-          name: "Delivered",
-          value: stats.delivered
-        },
-        {
-          name: "Pending",
-          value: stats.pending
-        }
-      ]}
-      dataKey="value"
-      outerRadius={80}
-    >
+            <Pie
+              data={[
+                {
+                  name: "Delivered",
+                  value: stats.delivered
+                },
+                {
+                  name: "Pending",
+                  value: stats.pending
+                }
+              ]}
+              dataKey="value"
+              outerRadius={80}
+            >
 
-      <Cell fill="#5dd754" />
-      <Cell fill="#43c0cb" />
+              <Cell fill="#5dd754" />
+              <Cell fill="#43c0cb" />
 
-    </Pie>
+            </Pie>
 
-  </PieChart>
+          </PieChart>
 
-  <div className="legend">
+          <div className="legend">
 
-    <div className="legend-item">
-      <span className="green"></span>
-      Delivered
-    </div>
+            <div className="legend-item">
+              <span className="green"></span>
+              Delivered
+            </div>
 
-    <div className="legend-item">
-      <span className="blue"></span>
-      Pending
-    </div>
+            <div className="legend-item">
+              <span className="blue"></span>
+              Pending
+            </div>
 
-  </div>
+          </div>
 
-</div>
+        </div>
 
       </div>
 

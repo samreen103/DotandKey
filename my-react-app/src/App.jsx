@@ -10,6 +10,7 @@ import EditUser from "./EditUser";
 import Login from "./Login";
 import Signup from "./Signup";
 import Search from "./Search"
+import Contact from "./Contact"
 import Home from "./Home";
 import Footer from "./Footer";
 import Bestsellers from "./Bestsellers";
@@ -42,6 +43,7 @@ function Layout() {
         <Route path="/" element={<Home/>}/>
         <Route path="/Login" element={<Login/>}/>
         <Route path="/Signup" element={<Signup/>}/>
+        <Route path="/Contact" element={<Contact/>}/>
         <Route path="/Adminlogin" element={<Adminlogin/>}/>
         <Route path="/admindashboard" element={<Admindashboard/>}/> 
         <Route path="/AdminHome" element={<AdminHome/>}/> 
