@@ -13,7 +13,6 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     axios.post("https://dotandkey.onrender.com/signup", {name,email,password })
     .then((result) => {
       if (result.data === "User already exists") {
@@ -22,7 +21,6 @@ function Signup() {
         alert("Signup successful");
         navigate("/Login");   
       }
-
     })
     .catch((err) => console.log(err));
   };

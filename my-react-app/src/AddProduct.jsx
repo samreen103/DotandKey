@@ -14,7 +14,6 @@ function AddProduct() {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
-
         e.preventDefault();
         const formData = new FormData()
         formData.append('file', file)
@@ -22,13 +21,11 @@ function AddProduct() {
         formData.append('price', price)
         formData.append('description', description)
         formData.append('category', category)
-
         axios.post('https://dotandkey.onrender.com/AddProduct', formData)
             .then((res) =>{ 
                 console.log(res)
                 navigate('/ManageProducts')
             })
-            
             .catch((err) => console.log(err));
     }
 

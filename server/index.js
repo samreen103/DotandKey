@@ -290,40 +290,54 @@ app.get("/myOrders/:userId", async (req, res) => {
 
 app.get("/admin-stats", async (req, res) => {
   try {
+
     const products = await ProductsModel.countDocuments();
     const users = await UsersModel.countDocuments();
     const orders = await OrdersModel.find();
 
     const totalOrders = orders.length;
-    let revenue =0;
-    orders.forEach(order=>{
-      revenue+=order.total;
-    });
 
+    let revenue = 0;
     let delivered = 0;
     let pending = 0;
 
     const ordersByDate = {};
+    const revenueByDate = {};
 
-    orders.forEach(order => {
+    orders.forEach((order) => {
+
+      revenue += order.total;
 
       const date = new Date(order.createdAt).toLocaleDateString();
 
-      if (order.status === "Delivered")
+      if (revenueByDate[date]) {
+        revenueByDate[date] += order.total;
+      } else {
+        revenueByDate[date] = order.total;
+      }
+
+      if (order.status === "Delivered") {
         delivered++;
-      else
+      } else {
         pending++;
+      }
 
       if (ordersByDate[date]) {
-        ordersByDate[date]+= order.total;
+        ordersByDate[date]++;
       } else {
-        ordersByDate[date] = order.total;
+        ordersByDate[date] = 1;
       }
+
     });
 
-    const chartData = Object.keys(ordersByDate).map(date => ({
+    const ordersData = Object.keys(ordersByDate).map((date) => ({
       date,
       orders: ordersByDate[date]
+    }));
+
+    const revenueData = Object.keys(revenueByDate).map((date) => ({
+      date,
+      revenue: revenueByDate[date]
     }));
 
     res.json({
@@ -333,7 +347,8 @@ app.get("/admin-stats", async (req, res) => {
       delivered,
       pending,
       revenue,
-      chartData
+      ordersData,
+      revenueData
     });
 
   } catch (err) {
