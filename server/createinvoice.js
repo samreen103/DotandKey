@@ -38,7 +38,7 @@ const generatePDF = (order) => {
           total += itemTotal;
 
           doc.fontSize(12).text(
-            `${index + 1}. ${item.name} | Qty: ${qty} | \u2089 ${price} | Total: \u2089 ${itemTotal}`
+            `${index + 1}. ${item.name} | Qty: ${qty} | Rps ${price} | Total: Rps ${itemTotal}`
           );
         });
       } else {
@@ -49,9 +49,9 @@ const generatePDF = (order) => {
       const gst = total * 0.18;
       const finalTotal = total + gst;
 
-      doc.fontSize(12).text(`Subtotal: \u2089 ${total.toFixed(2)}`);
-      doc.text(`GST (18%): \u2089 ${gst.toFixed(2)}`);
-      doc.text(`Grand Total: \u2089 ${finalTotal.toFixed(2)}`);
+      doc.fontSize(12).text(`Subtotal: Rps ${total.toFixed(2)}`);
+      doc.text(`GST (18%): Rps ${gst.toFixed(2)}`);
+      doc.text(`Grand Total: Rps ${finalTotal.toFixed(2)}`);
 
       doc.moveDown();
 
